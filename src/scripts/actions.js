@@ -30,7 +30,10 @@ const ACTIONS = {
 			var newJob = new JobModel(jobData)
 			newJob.save()
 				.then(
-					(success)=>console.log(success), 
+					(success)=> {
+						console.log(success)
+						location.hash = "home"
+					}, 
 					(error)=>console.log(error))
 	}
 

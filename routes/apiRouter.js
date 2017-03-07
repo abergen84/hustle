@@ -52,7 +52,14 @@ let Job = require('../db/schema.js').Job
   apiRouter
     .get('/jobs', function(request, response){
       Job.find(request.query, function(error, results){
-        error ? response.json(error) : response.json(results)
+        // error ? response.json(error) : response.json(results)
+        if (error) {
+          response.send(error)
+          console.log(error)
+        } else {
+          response.json(results)
+          console.log(results)
+        }
       })
     })
     .post('/jobs', function(request, response){

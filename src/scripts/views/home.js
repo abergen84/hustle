@@ -8,10 +8,15 @@ import STORE from '../store'
 
 class Home extends React.Component {
 	
-	constructor(props){
-		super(props)
+	constructor(){
+		super()
 		this.state = STORE.getData()
-		console.log(this.state)
+		console.log('constructor', this.state)
+	}
+
+	componentWillMount(){
+		this.setState(STORE.getData())
+		console.log('componentWillMount', this.state)
 	}
 
 	render(){
@@ -56,12 +61,13 @@ class HomeSearchResults extends React.Component {
 	// }
 
 	render() {
-		console.log(this.props.jobColl)
+		console.log('HomeSearchResults', this.props.jobColl)
 		return (
 			<div className="jobResults">
 				<div>
 					{this.props.jobColl.map((model)=>
-						<Job model={model} />)}
+						<Job model={model} />
+						)}
 				</div>
 			</div>
 			)
