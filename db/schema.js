@@ -20,11 +20,14 @@ const usersSchema = new mongoose.Schema({
 // ----------------------
 
 const jobSchema = new mongoose.Schema({
-	company: { type: String, required: true }
+	email: { type: String, required: true }
+  , company: { type: String, required: true }
 	, title: { type: String, required: true }
 	, description: { type: String, required: true }
-	, location: { type: String, required: true }
+	, city: { type: String, required: true }
+  , state: { type: String, required: true }
 	, worktype: { type: String, required: true }
+  , hours: { type: String, required: true }
 	, created: { type: Date, default: Date.now }
 })
 

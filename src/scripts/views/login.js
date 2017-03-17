@@ -3,19 +3,18 @@ import ACTIONS from '../actions'
 import Header from './header'
 
 
-class Credentials extends React.Component {
+class Login extends React.Component {
 	render(){
 		return (
-			<div className="credentials">
+			<div className="login">
 				<Header />
-				<Login />
-				<Register />
+				<LoginCreds />
 			</div>
 			)
 	}
 }
 
-class Login extends React.Component {
+class LoginCreds extends React.Component {
 	
 	login(event){
 		event.preventDefault()
@@ -35,27 +34,5 @@ class Login extends React.Component {
 	}
 }
 
-class Register extends React.Component {
-		
-	register(event){
-		event.preventDefault()
-		ACTIONS.registerUser({
-			email: event.currentTarget.username.value
-			, password: event.currentTarget.password.value
-		})
-	}	
 
-	render(){
-		return (
-			<div className="register">
-				<form onSubmit={this.register}>
-					<input type="email" name="username" placeholder="email" />
-					<input type="password" name="password" placeholder="password" />
-					<button type="submit">Register</button>
-				</form>
-			</div>
-			)
-	}
-}
-
-export default Credentials
+export default Login

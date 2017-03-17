@@ -5,7 +5,8 @@ import init from './init'
 import Dashboard from './views/dashboard'
 import Home from './views/home'
 import PostJobView from './views/postJobs'
-import Credentials from './views/login'
+import Login from './views/login'
+import Register from './views/register'
 
 
 const app = function() {
@@ -16,7 +17,9 @@ const app = function() {
 			, 'jobs': 'viewJobs'
 			, 'jobs/:id': 'viewJob'
 			, 'postjob': 'postJob'
+			, 'dashboard': 'dashboard'
 			, 'login': 'login'
+			, 'register': 'register'
 			, '*redirect': 'redirect'
 		}
 
@@ -40,8 +43,16 @@ const app = function() {
 				ReactDOM.render(<PostJobView />, document.querySelector('.container'))
 		}
 
+		, dashboard(){
+				ReactDOM.render(<Dashboard />, document.querySelector('.container'))
+		}
+
 		, login(){
-			ReactDOM.render(<Credentials />, document.querySelector('.container'))
+				ReactDOM.render(<Login />, document.querySelector('.container'))
+		}
+
+		, register(){
+				ReactDOM.render(<Register />, document.querySelector('.container'))
 		}
 
 		, initialize(){

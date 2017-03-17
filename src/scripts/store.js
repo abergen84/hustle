@@ -18,7 +18,7 @@ const STORE = _.extend(Backbone.Events, {
 	}
 
 	, initialize: function(){
-		this.data.jobCollection.on('sync update', this.emitChange.bind(this))
+		this.data.jobCollection.on('sync update reset', this.emitChange.bind(this))
 	}
 
 

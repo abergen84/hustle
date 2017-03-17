@@ -2,6 +2,7 @@ import React from 'react'
 import Backbone from 'backbone'
 import Header from './header'
 import STORE from '../store'
+import ACTIONS from '../actions'
 
 
 
@@ -10,13 +11,19 @@ class Home extends React.Component {
 	
 	constructor(){
 		super()
+		ACTIONS.fetchJobs()
 		this.state = STORE.getData()
 		console.log('constructor', this.state)
 	}
 
 	componentWillMount(){
-		this.setState(STORE.getData())
-		console.log('componentWillMount', this.state)
+		STORE.on('updateContent', ()=> {
+			this.setState(STORE.getData())
+		})
+	}
+
+	componentWillUnmount(){
+		STORE.off('updateContent')
 	}
 
 	render(){
@@ -33,19 +40,22 @@ class Home extends React.Component {
 class HomeSearch extends React.Component {
 	
 	submit(event){
-		console.log(event)
+		event.preventDefault()
+		ACTIONS.searchJobs({
+			title: event.currentTarget.jobtitle.value
+			, worktype: event.currentTarget.worktype.value
+		})
 	}
 
 	render(){
 		return (
 			<div className="homeSearch">
 				<form onSubmit={this.submit}>
-					<input type="text" placeholder="job title" name="job-title" />
-					<select>
-						<option value="defaultvalue">Select your desired time</option>
-						<option value="part-weekend">part-time weekend</option>
-						<option value="part-weekday-day">part-time weekday daytime</option>
-						<option value="part-weekday-evening">part-time weekday evenings</option>
+					<input type="text" placeholder="job title" name="jobtitle" />
+					<select name="worktype">
+						<option>part-time weekend</option>
+						<option>part-time weekday daytime</option>
+						<option>part-time weekday evenings</option>
 					</select>
 					<button type="submit">submit</button>
 				</form>
@@ -56,19 +66,15 @@ class HomeSearch extends React.Component {
 
 class HomeSearchResults extends React.Component {
 	
-	// mapresults(model){
-	// 	return <Job model={model} />
-	// }
+	mapresults(model){
+		return <Job model={model} key={model.cid} />
+	}
 
 	render() {
 		console.log('HomeSearchResults', this.props.jobColl)
 		return (
 			<div className="jobResults">
-				<div>
-					{this.props.jobColl.map((model)=>
-						<Job model={model} />
-						)}
-				</div>
+					{this.props.jobColl.models.map(this.mapresults)}
 			</div>
 			)
 	}
@@ -76,9 +82,11 @@ class HomeSearchResults extends React.Component {
 
 class Job extends React.Component {
 	render(){
-		console.log(this.props.model)
 		return (
-			<div>test</div>
+			<div>
+				<h3>{this.props.model.attributes.company}</h3>
+				<p>{this.props.model.get('title')}</p>
+			</div>
 			)
 	}
 }

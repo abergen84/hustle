@@ -16,12 +16,10 @@ class Dashboard extends React.Component {
 
 class MainDash extends React.Component {
 	render(){
-		// const loginName
-		// User.getCurrentUser() ? loginName = User.getCurrentUser().name : 'Login!'
 		return (
 			<div>
 				<p>Welcome back, </p>
-				<p>Test</p>
+				<p>See the jobs you've posted or saved below</p>
 			</div>
 			)
 	}
