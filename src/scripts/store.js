@@ -1,12 +1,13 @@
 import Backbone from 'backbone'
 import _ from 'underscore'
 import { clone } from 'ramda'
-import { JobCollection } from './models/jobsModel'
+import { JobCollection, JobModel } from './models/jobsModel'
 
 const STORE = _.extend(Backbone.Events, {
 	
 	data: {
 		jobCollection: new JobCollection()
+		, jobModel: new JobModel()
 	}
 
 	, getData: function(){
@@ -19,6 +20,7 @@ const STORE = _.extend(Backbone.Events, {
 
 	, initialize: function(){
 		this.data.jobCollection.on('sync update reset', this.emitChange.bind(this))
+		this.data.jobModel.on('sync update reset', this.emitChange.bind(this))
 	}
 
 

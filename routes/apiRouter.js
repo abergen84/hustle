@@ -73,17 +73,22 @@ let Job = require('../db/schema.js').Job
 //ONE JOB
 
   apiRouter
-    .get('jobs/:_id', function(request, response){
+    .get('/job/:_id', function(request, response){
       Job.findById(request.params._id, function(error, record){
-        error || !record ? response.json(error) : response.json(record)
+        if(error || !record) {
+          console.log(error) 
+          response.json(error)
+        } else { 
+          response.json(record)
+        }
       })
     })
-    .put('jobs/:_id', function(request, response){
+    .put('/job/:_id', function(request, response){
       Job.findByIdAndUpdate(request.params._id, request.body, function(error, records){
         error ? response.send(error) : response.json(records)
       })
     })
-    .delete('jobs/:_id', function(request, response){
+    .delete('/job/:_id', function(request, response){
       Job.remove({ _id: request.params._id}, function(error){
         error ? response.send(error) : response.json({
           msg: `record ${request.params._id} successfully deleted`

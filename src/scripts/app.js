@@ -5,8 +5,10 @@ import init from './init'
 import Dashboard from './views/dashboard'
 import Home from './views/home'
 import PostJobView from './views/postJobs'
+import JobView from './views/viewJob'
 import Login from './views/login'
 import Register from './views/register'
+import User from './models/userModel'
 
 
 const app = function() {
@@ -15,7 +17,7 @@ const app = function() {
 		routes: {
 			'home': 'home'
 			, 'jobs': 'viewJobs'
-			, 'jobs/:id': 'viewJob'
+			, 'job/:id': 'viewJob'
 			, 'postjob': 'postJob'
 			, 'dashboard': 'dashboard'
 			, 'login': 'login'
@@ -35,8 +37,8 @@ const app = function() {
 				ReactDOM.render(<JobsView />, document.querySelector('.container'))
 		}
 
-		, viewJob(){
-				ReactDOM.render(<JobView />, document.querySelector('.container'))
+		, viewJob(id){
+				ReactDOM.render(<JobView id={id} />, document.querySelector('.container'))
 		}
 
 		, postJob(){
@@ -56,6 +58,11 @@ const app = function() {
 		}
 
 		, initialize(){
+			// this.on('route', (handlerName)=> {
+			// 	if(!User.getCurrentUser()){
+			// 		location.hash = 'login'
+			// 	}
+			// })
 			Backbone.history.start()
 		}
 	})

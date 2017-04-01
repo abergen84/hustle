@@ -1,7 +1,7 @@
 import Backbone from 'backbone'
 
 const JobModel = Backbone.Model.extend({
-	urlRoot: "/api/jobs"
+	urlRoot: "/api/job"
 	, idAttribute: "_id"
 })
 

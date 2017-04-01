@@ -45,8 +45,13 @@ const ACTIONS = {
 		console.log(queryObj)
 			STORE.data.jobCollection.fetch({
 				data: queryObj
-				, success: ()=> console.log('success')
-			})
+				, success: (info)=> console.log('success getting jobs', info)
+			}).then((data)=> console.log('success getting collection jobs', data))
+	}
+
+	, fetchJob: function(model){
+			STORE.data.jobModel.fetch(model)
+			.then((data)=> console.log('success getting job', data))
 	}
 
 	, searchJobs: function(searchObj){

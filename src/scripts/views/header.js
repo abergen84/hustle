@@ -11,7 +11,7 @@ class Header extends React.Component {
 
 	render(){
 		var show
-		console.log('user?', User.getCurrentUser())
+		// console.log('user?', User.getCurrentUser())
 		if(!User.getCurrentUser()){ 
 			show = {
 				display: 'none'

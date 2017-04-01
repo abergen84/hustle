@@ -80,15 +80,20 @@ class HomeSearchResults extends React.Component {
 	}
 }
 
-class Job extends React.Component {
-	render(){
+const Job = React.createClass({
+
+	goToJob(){
+		location.hash = `job/${this.props.model.get('_id')}`
+	}
+
+	, render(){
 		return (
-			<div>
+			<div onClick={this.goToJob} >
 				<h3>{this.props.model.attributes.company}</h3>
 				<p>{this.props.model.get('title')}</p>
 			</div>
 			)
 	}
-}
+})
 
 export default Home
