@@ -28,14 +28,27 @@ class Home extends React.Component {
 
 	render(){
 		return (
-			<div className="home">
+			<div className="homepage">
 				<Header />
-				<HomeSearch />
-				<HomeSearchResults jobColl={this.state.jobCollection} />
+				<div className="home">
+					<Tagline />
+					<HomeSearch />
+					<HomeSearchResults jobColl={this.state.jobCollection} />
+				</div>
 			</div>
 			)
 	}
 }
+
+const Tagline = React.createClass({
+	render(){
+		return (
+			<div id="tagline">
+				<span>find your dream side gig.</span>
+			</div>
+			)
+	}
+})
 
 class HomeSearch extends React.Component {
 	
@@ -44,6 +57,7 @@ class HomeSearch extends React.Component {
 		ACTIONS.searchJobs({
 			title: event.currentTarget.jobtitle.value
 			, worktype: event.currentTarget.worktype.value
+			, location: event.currentTarget.location.value
 		})
 	}
 
@@ -51,12 +65,13 @@ class HomeSearch extends React.Component {
 		return (
 			<div className="homeSearch">
 				<form onSubmit={this.submit}>
-					<input type="text" placeholder="job title" name="jobtitle" />
+					<input id="jobtitle" type="text" placeholder="job title" name="jobtitle" />
 					<select name="worktype">
 						<option>part-time weekend</option>
 						<option>part-time weekday daytime</option>
 						<option>part-time weekday evenings</option>
 					</select>
+					<input id="location" type="text" placeholder="city" name="location" />
 					<button type="submit">submit</button>
 				</form>
 			</div>

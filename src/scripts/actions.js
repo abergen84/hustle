@@ -59,7 +59,8 @@ const ACTIONS = {
 			console.log('before', coll)
 			const filtered = coll.filter((job) =>
 				job.get("title") === searchObj.title.toLowerCase() || 
-				job.get("worktype") === searchObj.worktype.toLowerCase()
+				job.get("worktype") === searchObj.worktype.toLowerCase() ||
+				job.get("location") === searchObj.location.toLowerCase() 
 			)
 			coll.reset(filtered)
 			console.log('after', coll)

@@ -10,25 +10,40 @@ class Header extends React.Component {
 	}
 
 	render(){
-		var show
-		// console.log('user?', User.getCurrentUser())
-		if(!User.getCurrentUser()){ 
-			show = {
+		var showPost, showLoginRegister, showName 
+		if(!User.getCurrentUser().id){ 
+			showPost = {
 				display: 'none'
 			}
+			, showLoginRegister = {
+					display: 'inline-block'
+			}
+			, showName = {
+					display: 'none'
+			}
 		} else {
-			show = {
+			showPost = {
 				display: 'inline-block'
 			}
+			, showLoginRegister = {
+					display: 'none'
+			}
+			, showName = {
+					display: 'inline-block'
+			}
 		}
+		const name = `Welcome back, ${User.getCurrentUser().attributes.email}`
 		return (
 			<nav>
-				<h1>Hustle</h1>
-				<h4 style={show}><a href="#postjob">post job</a></h4>
-				<h4><a href="#login">login</a></h4>
-				<h4><a href="#register">register</a></h4>
-				<h4><a href="#dashboard">dashboard</a></h4>
-				<h4><a href="#" onClick={this.logout}>logout</a></h4>
+				<div className="links">
+					<h4 style={showPost}><a href="#postjob">post job</a></h4>
+					<h4 style={showLoginRegister}><a href="#login">login</a></h4>
+					<h4 style={showLoginRegister}><a href="#register">register</a></h4>
+					<h4><a href="#dashboard">dashboard</a></h4>
+					<h4 style={showName}><a href="#" onClick={this.logout}>logout</a></h4>
+					<h4 style={showName}>{name}</h4>
+				</div>
+				<h1>eltsuh</h1>
 			</nav>
 			)
 	}
