@@ -54,11 +54,18 @@ class HomeSearch extends React.Component {
 	
 	submit(event){
 		event.preventDefault()
-		ACTIONS.searchJobs({
+		// ACTIONS.searchJobs({
+		// 	title: event.currentTarget.jobtitle.value
+		// 	, worktype: event.currentTarget.worktype.value
+		// 	, location: event.currentTarget.location.value
+		// })
+		const jobInfo = {
 			title: event.currentTarget.jobtitle.value
 			, worktype: event.currentTarget.worktype.value
 			, location: event.currentTarget.location.value
-		})
+		}
+		STORE.trigger('jobinfo', jobInfo)
+		location.hash = "jobs"
 	}
 
 	render(){
@@ -88,9 +95,10 @@ class HomeSearchResults extends React.Component {
 	render() {
 		console.log('HomeSearchResults', this.props.jobColl)
 		return (
-			<div className="jobResults">
+				<div className="jobResults">
+					<span>Some of the latest jobs posted from around the nation:</span>
 					{this.props.jobColl.models.map(this.mapresults)}
-			</div>
+				</div>
 			)
 	}
 }
@@ -101,11 +109,13 @@ const Job = React.createClass({
 		location.hash = `job/${this.props.model.get('_id')}`
 	}
 
-	, render(){
+	, render(){	
 		return (
-			<div onClick={this.goToJob} >
-				<h3>{this.props.model.attributes.company}</h3>
+			<div className="job" onClick={this.goToJob} >
+				<h3>{this.props.model.get('company')}</h3>
 				<p>{this.props.model.get('title')}</p>
+				<p>{this.props.model.get('location')}</p>
+				<p>{this.props.model.get('worktype')}</p>
 			</div>
 			)
 	}

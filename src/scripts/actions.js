@@ -66,6 +66,12 @@ const ACTIONS = {
 			console.log('after', coll)
 	}
 
+	, getEvent: function(){
+		Backbone.Events.on('jobinfo', (payload)=>{
+		console.log('payload', payload)
+		})
+	}
+
 }
 
 
