@@ -7,6 +7,7 @@ import Home from './views/home'
 import PostJobView from './views/postJobs'
 import JobView from './views/viewJob'
 import JobsView from './views/viewJobs'
+import SearchView from './views/search'
 import Login from './views/login'
 import Register from './views/register'
 import User from './models/userModel'
@@ -17,10 +18,11 @@ const app = function() {
 	const Router = Backbone.Router.extend({
 		routes: {
 			'home': 'home'
-			, 'jobs': 'viewJobs'
+			, 'jobs/:title/:worktype/:location': 'viewJobs'
 			, 'job/:id': 'viewJob'
 			, 'postjob': 'postJob'
 			, 'dashboard': 'dashboard'
+			, 'search': 'search'
 			, 'login': 'login'
 			, 'register': 'register'
 			, '*redirect': 'redirect'
@@ -31,31 +33,35 @@ const app = function() {
 		}
 
 		, home(){
-				ReactDOM.render(<Home />, document.querySelector('.container'))
+				ReactDOM.render(<Home />, document.querySelector('.container-fluid'))
 		}
 
-		, viewJobs(){
-				ReactDOM.render(<JobsView />, document.querySelector('.container'))
+		, viewJobs(title,worktype,location){
+				ReactDOM.render(<JobsView title={title} worktype={worktype} location={location} />, document.querySelector('.container-fluid'))
 		}
 
 		, viewJob(id){
-				ReactDOM.render(<JobView id={id} />, document.querySelector('.container'))
+				ReactDOM.render(<JobView id={id} />, document.querySelector('.container-fluid'))
 		}
 
 		, postJob(){
-				ReactDOM.render(<PostJobView />, document.querySelector('.container'))
+				ReactDOM.render(<PostJobView />, document.querySelector('.container-fluid'))
 		}
 
 		, dashboard(){
-				ReactDOM.render(<Dashboard />, document.querySelector('.container'))
+				ReactDOM.render(<Dashboard />, document.querySelector('.container-fluid'))
+		}
+
+		, search(){
+				ReactDOM.render(<SearchView />, document.querySelector('.container-fluid'))
 		}
 
 		, login(){
-				ReactDOM.render(<Login />, document.querySelector('.container'))
+				ReactDOM.render(<Login />, document.querySelector('.container-fluid'))
 		}
 
 		, register(){
-				ReactDOM.render(<Register />, document.querySelector('.container'))
+				ReactDOM.render(<Register />, document.querySelector('.container-fluid'))
 		}
 
 		, initialize(){

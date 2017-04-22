@@ -56,21 +56,20 @@ const ACTIONS = {
 
 	, searchJobs: function(searchObj){
 			const coll = STORE.data.jobCollection
-			console.log('before', coll)
+			// console.log('before', coll)
 			const filtered = coll.filter((job) =>
 				job.get("title") === searchObj.title.toLowerCase() || 
 				job.get("worktype") === searchObj.worktype.toLowerCase() ||
 				job.get("location") === searchObj.location.toLowerCase() 
 			)
 			coll.reset(filtered)
-			console.log('after', coll)
+			// console.log('after', coll)
 	}
 
-	, getEvent: function(){
-		Backbone.Events.on('jobinfo', (payload)=>{
-		console.log('payload', payload)
-		})
-	}
+	// , searchAgain: function(searchObj){
+	// 		Backbone.Events.trigger('jobinfo', searchObj)
+	// 		location.hash = "jobs"
+	// }
 
 }
 

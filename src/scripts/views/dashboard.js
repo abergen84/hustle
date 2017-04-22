@@ -16,9 +16,10 @@ class Dashboard extends React.Component {
 
 class MainDash extends React.Component {
 	render(){
+		const name = User.getCurrentUser().attributes.email
 		return (
 			<div>
-				<p>Welcome back, </p>
+				<p>Welcome back, {name}</p>
 				<p>See the jobs you've posted or saved below</p>
 			</div>
 			)

@@ -6,9 +6,11 @@ import ACTIONS from '../actions'
 class PostJobView extends React.Component {
 	render(){
 		return (
-			<div className="postJob">
+			<div>
 				<Header />
-				<PostJob />
+				<div className="post-job">
+					<PostJob />
+				</div>
 			</div>
 			)
 	}
@@ -19,27 +21,29 @@ class PostJob extends React.Component {
 	saveJob(event){
 		event.preventDefault()
 		ACTIONS.saveJob({
-			company: event.currentTarget.company.value
-			, email: event.currentTarget.email.value
-			, title: event.currentTarget.title.value
-			, description: event.currentTarget.description.value
-			, city: event.currentTarget.city.value
-			, state: event.currentTarget.state.value
-			, hours: event.currentTarget.hours.value
-			, worktype: event.currentTarget.worktype.value
+			company: event.currentTarget.company.value.toLowerCase()
+			, email: event.currentTarget.email.value.toLowerCase()
+			, title: event.currentTarget.title.value.toLowerCase()
+			, description: event.currentTarget.description.value.toLowerCase()
+			, city: event.currentTarget.city.value.toLowerCase()
+			, state: event.currentTarget.state.value.toLowerCase()
+			, hours: event.currentTarget.hours.value.toLowerCase()
+			, worktype: event.currentTarget.worktype.value.toLowerCase()
 			
 		})
 	}
 
 	render(){
 		return (
-			<div className="postJobForm">
+			<div className="post-job-form">
 				<form onSubmit={this.saveJob} >
 					<input type="text" name="company" placeholder="company" />
 					<input type="email" name="email" placeholder="enter email" />
 					<input type="text" name="title" placeholder="enter job title" />
-					<input type="text" name="city" placeholder="city" />
-					<input type="text" name="state" placeholder="state" />
+					<div id="post-job-location">
+						<input type="text" name="city" placeholder="city" />
+						<input type="text" name="state" placeholder="state" />
+					</div>
 					<select name="worktype">
 						<option>part-time weekend</option>
 						<option>part-time weekday daytime</option>

@@ -62,12 +62,16 @@ let Job = require('../db/schema.js').Job
         }
       })
     })
-    .post('/jobs', function(request, response){
-      let newJob = new Job(request.body)
-      newJob.save(function(error){
-        error ? response.json(error) : response.json(newJob)
+
+//SAVE A JOB
+
+  apiRouter
+    .post('/job', function(request, response){
+        let newJob = new Job(request.body)
+        newJob.save(function(error){
+          error ? response.json(error) : response.json(newJob)
+        })
       })
-    })
 
 
 //ONE JOB

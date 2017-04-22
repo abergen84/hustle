@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
+@import '../../node_modules/font-awesome/scss/font-awesome.scss';
+
 
 * {
 	box-sizing: border-box;
@@ -9,60 +11,62 @@ body {
 	margin: 0;
 }
 
-nav {
-	h1 {
-		font-size: 72px;
-		text-align: center;
-		margin: 0;
-		font-family: 'Oswald';
-		font-weight: 700;
-		color: #fff;
-	}	
-
-	.links {
-		a {
-			text-decoration: none;
-			color: #000;
-		}
+.top-header {
 		text-align: center;
 		width: 100%;
 		margin: 0 auto;
 		background: rgba(255,255,255,1);
+		height: 60px;
+		padding: 0 50px;
+		#header-title {
+			float: left;
+			font-size: 28px;
+		}
+		#login-register {
+			text-align: right;
+			margin-top: 10px;
+		}
+		a {
+			text-decoration: none;
+			color: #000;
+		}
 		h4 {
 			display: inline-block;
 			padding-left: 12px;
 			margin: 10px;
 			font-family: 'Oswald';
 		}
-	}
-
+		#logout-button {
+			float: right;
+		}
 }
 
 
-.homepage {
-	background: linear-gradient(
+	.home {
+		background: linear-gradient(
       rgba(0, 0, 0, 0.3), 
       rgba(0, 0, 0, 0.3)
-    ), url('../images/nyc.jpeg') center no-repeat;
-	background-size: cover;
-	.home {
+    ), url('../images/nyc2.jpg') center no-repeat;
+		background-size: cover;
 		text-align: center;
-		margin-top: 10%;
-		#tagline {
-			padding-bottom: 2%;
-			font-style: italic;
-			font-weight: 700;
-			color: #fff;
-			font-size: 30px;
-			font-family: 'Oswald';
-		}
+		
 		.homeSearch {
-
+			height: 450px;
+			#tagline {
+				display: block;
+				padding: 10% 0 2% 0;
+				font-style: italic;
+				font-weight: 700;
+				color: #fff;
+				font-size: 30px;
+				font-family: 'Oswald';
+			}
 			input {
 				height: 30px;
 				border-radius: 5px;
 				border-width: 0;
 				padding-left: 5px;
+				margin-left: 5px;
 			}
 			#jobtitle {
 				width: 250px;
@@ -74,10 +78,6 @@ nav {
 				display: block;
 				margin: 0 auto;
 				margin-top: 10px;
-				width: 75px;
-				height: 30px;
-				border-width: 0;
-				background: papayawhip;
 			}
 			select {
 				padding: 10px;
@@ -86,26 +86,44 @@ nav {
 				height: 30px;
 			}
 		}
-		.jobResults {
+		a {
 			color: #fff;
-			background: rgba(255,239,213,0.95);
-			width: 40%;
-			margin: 4% auto 0 auto;
-			span {
-				margin-top: 20px;
-				color: #1a416d;
-				font-family: 'Oswald';
-			}
-			.job {
-				text-align: left;
-    		margin: 10px 20px;
-    		background: #1a416d;
-    		border-radius: 5px;
-    		padding: 10px;
+		}
+	}
+
+	.intro {
+		h1 {
+			font-family: "Oswald";
+			font-size: 52px;
+		}
+		p {
+			font-size: 20px;
+		}
+		.icon {
+			margin-top: 20px;
+    	text-align: center;
+    	display: block;
+		}
+	}
+
+	.post-job {
+		.post-job-form {
+			form {
+				input, select, textarea {
+					display: block;
+					margin: 10px 0 5px;
+					width: 300px;
+				}
+				#post-job-location {
+					input {
+						display: inline-block;
+						width: 150px;
+					}
+				}
+				textarea {
+					height: 200px;
+				}
 			}
 		}
-
-
 	}
 	
-}

@@ -1,6 +1,7 @@
 import React from 'react'
 import User from '../models/userModel'
 import ACTIONS from '../actions'
+import { Button, Row, Col, Grid } from 'react-bootstrap'
 
 
 class Header extends React.Component {
@@ -10,7 +11,7 @@ class Header extends React.Component {
 	}
 
 	render(){
-		var showPost, showLoginRegister, showName 
+		var showPost, showLoginRegister, showName, showDash 
 		if(!User.getCurrentUser().id){ 
 			showPost = {
 				display: 'none'
@@ -20,6 +21,9 @@ class Header extends React.Component {
 			}
 			, showName = {
 					display: 'none'
+			}
+			, showDash = {
+				display: 'none'
 			}
 		} else {
 			showPost = {
@@ -31,19 +35,22 @@ class Header extends React.Component {
 			, showName = {
 					display: 'inline-block'
 			}
+			, showDash = {
+					display: 'inline-block'
+			}
 		}
 		const name = `Welcome back, ${User.getCurrentUser().attributes.email}`
 		return (
-			<nav>
-				<div className="links">
-					<h4 style={showPost}><a href="#postjob">post job</a></h4>
-					<h4 style={showLoginRegister}><a href="#login">login</a></h4>
-					<h4 style={showLoginRegister}><a href="#register">register</a></h4>
-					<h4><a href="#dashboard">dashboard</a></h4>
-					<h4 style={showName}><a href="#" onClick={this.logout}>logout</a></h4>
-					<h4 style={showName}>{name}</h4>
+			<nav className="top-header">
+				<span id="header-title">hustlegigs</span>
+				<h4 style={showPost}><a href="#postjob">post job</a></h4>
+				<div id="login-register">
+					<Button style={showLoginRegister}><a href="#login">login</a></Button>
+					<Button style={showLoginRegister}><a href="#register">register</a></Button>
 				</div>
-				<h1>eltsuh</h1>
+				<h4 style={showDash}><a href="#dashboard">dashboard</a></h4>
+				<Button id="logout-button" style={showName} onClick={this.logout}>logout</Button>
+				<h4 style={showName}>{name}</h4>
 			</nav>
 			)
 	}

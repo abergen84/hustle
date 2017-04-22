@@ -16,6 +16,7 @@ const STORE = _.extend(Backbone.Events, {
 
 	, emitChange: function(){
 		this.trigger('updateContent')
+		// this.trigger('jobInfo')
 	}
 
 	, initialize: function(){
