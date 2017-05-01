@@ -39,14 +39,14 @@ class Header extends React.Component {
 					display: 'inline-block'
 			}
 		}
-		const name = `Welcome back, ${User.getCurrentUser().attributes.email}`
+		const name = `welcome back, ${User.getCurrentUser().attributes.email}`
 		return (
 			<nav className="top-header">
-				<span id="header-title">hustlegigs</span>
+				<a href="#home"><span id="header-title">hustlegigs</span></a>
 				<h4 style={showPost}><a href="#postjob">post job</a></h4>
-				<div id="login-register">
-					<Button style={showLoginRegister}><a href="#login">login</a></Button>
-					<Button style={showLoginRegister}><a href="#register">register</a></Button>
+				<div id="login-register" style={showLoginRegister}>
+					<Button><a href="#login">login</a></Button>
+					<Button><a href="#register">register</a></Button>
 				</div>
 				<h4 style={showDash}><a href="#dashboard">dashboard</a></h4>
 				<Button id="logout-button" style={showName} onClick={this.logout}>logout</Button>

@@ -22,7 +22,7 @@ const app = function() {
 			, 'job/:id': 'viewJob'
 			, 'postjob': 'postJob'
 			, 'dashboard': 'dashboard'
-			, 'search': 'search'
+			, 'search': 'viewSearch'
 			, 'login': 'login'
 			, 'register': 'register'
 			, '*redirect': 'redirect'
@@ -52,7 +52,7 @@ const app = function() {
 				ReactDOM.render(<Dashboard />, document.querySelector('.container-fluid'))
 		}
 
-		, search(){
+		, viewSearch(){
 				ReactDOM.render(<SearchView />, document.querySelector('.container-fluid'))
 		}
 

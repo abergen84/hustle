@@ -126,4 +126,14 @@ body {
 			}
 		}
 	}
+
+	.search-criteria-form {
+		form {
+			input, select, textarea {
+				display: block;
+				margin: 10px 0 5px;
+				width: 300px;
+			}
+		}
+	}
 	
