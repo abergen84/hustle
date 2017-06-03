@@ -17,7 +17,7 @@ class Header extends React.Component {
 				display: 'none'
 			}
 			, showLoginRegister = {
-					display: 'inline-block'
+					display: 'block'
 			}
 			, showName = {
 					display: 'none'

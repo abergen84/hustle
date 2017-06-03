@@ -18,7 +18,7 @@ const app = function() {
 	const Router = Backbone.Router.extend({
 		routes: {
 			'home': 'home'
-			, 'jobs/:title/:worktype/:location': 'viewJobs'
+			, 'jobs': 'viewJobs'
 			, 'job/:id': 'viewJob'
 			, 'postjob': 'postJob'
 			, 'dashboard': 'dashboard'
@@ -36,8 +36,8 @@ const app = function() {
 				ReactDOM.render(<Home />, document.querySelector('.container-fluid'))
 		}
 
-		, viewJobs(title,worktype,location){
-				ReactDOM.render(<JobsView title={title} worktype={worktype} location={location} />, document.querySelector('.container-fluid'))
+		, viewJobs(){
+				ReactDOM.render(<JobsView />, document.querySelector('.container-fluid'))
 		}
 
 		, viewJob(id){

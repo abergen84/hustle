@@ -6,7 +6,7 @@ import STORE from '../store'
 import ACTIONS from '../actions'
 import { Grid, Row, Col, Button } from 'react-bootstrap'
 import FontAwesome from 'react-fontawesome'
-
+//import PubSub from 'pubsub-js'
 
 class Home extends React.Component {
 	
@@ -14,7 +14,7 @@ class Home extends React.Component {
 		super()
 		ACTIONS.fetchJobs()
 		this.state = STORE.getData()
-		console.log('constructor', this.state)
+		//console.log('constructor', this.state)
 	}
 
 	componentWillMount(){
@@ -34,7 +34,6 @@ class Home extends React.Component {
 				<Row>
 					<div className="home">
 						<HomeSearch />
-					{/* <HomeSearchResults jobColl={this.state.jobCollection} /> */}
 					</div>
 				</Row>
 				<Intro />
@@ -47,20 +46,31 @@ class HomeSearch extends React.Component {
 	
 	submit(event){
 		event.preventDefault()
-	
-		location.hash = `jobs/${event.currentTarget.jobtitle.value}/
-		${event.currentTarget.worktype.value}/
-		${event.currentTarget.location.value}`
+		const searchObj = {
+			title: event.currentTarget.jobtitle.value
+			, worktype: event.currentTarget.worktype.value
+			, location: event.currentTarget.location.value
+			, hours: ''
+			, company: ''
+		}
+
+		Backbone.Events.trigger('jobCriteria', searchObj)
+		
+		ACTIONS.searchJobs(searchObj)
+		
+		location.hash = 'jobs'
+
 	}
 
 	render(){
 		return (
 			<div className="homeSearch">
-				<span id="tagline">find your dream side gig.</span>
+				<span id="tagline">find your side gig.</span>
 				<form onSubmit={this.submit}>
 					<input id="jobtitle" type="text" placeholder="job title" name="jobtitle" />
 					<input id="location" type="text" placeholder="city" name="location" />
 					<select name="worktype">
+						<option></option>
 						<option>part-time weekend</option>
 						<option>part-time weekday daytime</option>
 						<option>part-time weekday evenings</option>
@@ -83,10 +93,11 @@ const Intro = React.createClass({
 							<FontAwesome className="icon" name="rocket" size="5x" />
 						</Col>
 						<Col lg={8} sm={12}>
-							<h1>Search. Apply. Make money.</h1>
-							<p>It's as simple as finding a job, doing it in your spare time, and cashing in. 
-							No catches, just extra income when you realize your time is valuable and you'd rather
-							spend it wisely.</p>
+							<h1>Search. Apply. Money.</h1>
+							<p>It's as simple as finding something you enjoy doing in your spare time, and cashing in. 
+							Instead of trying to waste time selling your service or product, let someone else established 
+							take on that task while you worry about working. No catches, just extra income when you realize your time is valuable and 
+							you'd rather spend it wisely.</p>
 						</Col>
 					</Row>
 				</Grid>
@@ -94,40 +105,5 @@ const Intro = React.createClass({
 			)
 	}
 })
-
-// class HomeSearchResults extends React.Component {
-	
-// 	mapresults(model){
-// 		return <Job model={model} key={model.cid} />
-// 	}
-
-// 	render() {
-// 		console.log('HomeSearchResults', this.props.jobColl)
-// 		return (
-// 				<div className="jobResults">
-// 					<span>Some of the latest jobs posted from around the nation:</span>
-// 					{this.props.jobColl.models.map(this.mapresults)}
-// 				</div>
-// 			)
-// 	}
-// }
-
-// const Job = React.createClass({
-
-// 	goToJob(){
-// 		location.hash = `job/${this.props.model.get('_id')}`
-// 	}
-
-// 	, render(){	
-// 		return (
-// 			<div className="job" onClick={this.goToJob} >
-// 				<h3>{this.props.model.get('company')}</h3>
-// 				<p>{this.props.model.get('title')}</p>
-// 				<p>{this.props.model.get('location')}</p>
-// 				<p>{this.props.model.get('worktype')}</p>
-// 			</div>
-// 			)
-// 	}
-// })
 
 export default Home

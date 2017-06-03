@@ -15,10 +15,12 @@ const STORE = _.extend(Backbone.Events, {
 	}
 
 	, emitChange: function(){
-		this.trigger('updateContent')
-		// this.trigger('jobInfo')
+			this.trigger('updateContent')
 	}
 
+	//when the model or collection changes via a sync, update, or reset, fire off emitChange
+	//which throws a publish event updateContent. Then the other pages listen "on" for the
+	//updateContent trigger 
 	, initialize: function(){
 		this.data.jobCollection.on('sync update reset', this.emitChange.bind(this))
 		this.data.jobModel.on('sync update reset', this.emitChange.bind(this))

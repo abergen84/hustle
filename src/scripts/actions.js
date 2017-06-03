@@ -42,7 +42,6 @@ const ACTIONS = {
 	}
 
 	, fetchJobs: function(queryObj){
-		console.log(queryObj)
 			STORE.data.jobCollection.fetch({
 				data: queryObj
 				, success: (info)=> console.log('success getting jobs', info)
@@ -56,20 +55,15 @@ const ACTIONS = {
 
 	, searchJobs: function(searchObj){
 			const coll = STORE.data.jobCollection
-			// console.log('before', coll)
 			const filtered = coll.filter((job) =>
 				job.get("title") === searchObj.title.toLowerCase() || 
 				job.get("worktype") === searchObj.worktype.toLowerCase() ||
-				job.get("location") === searchObj.location.toLowerCase() 
+				job.get("location") === searchObj.location.toLowerCase() ||
+				job.get("hours") === searchObj.hours.toLowerCase() ||
+				job.get("company") === searchObj.company.toLowerCase()
 			)
 			coll.reset(filtered)
-			// console.log('after', coll)
 	}
-
-	// , searchAgain: function(searchObj){
-	// 		Backbone.Events.trigger('jobinfo', searchObj)
-	// 		location.hash = "jobs"
-	// }
 
 }
 
