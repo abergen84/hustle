@@ -47,14 +47,12 @@ class HomeSearch extends React.Component {
 	submit(event){
 		event.preventDefault()
 		const searchObj = {
-			title: event.currentTarget.jobtitle.value
-			, worktype: event.currentTarget.worktype.value
-			, location: event.currentTarget.location.value
+			title: event.currentTarget.jobtitle.value.toLowerCase()
+			, worktype: event.currentTarget.worktype.value.toLowerCase()
+			, city: event.currentTarget.city.value.toLowerCase()
 			, hours: ''
 			, company: ''
 		}
-
-		Backbone.Events.trigger('jobCriteria', searchObj)
 		
 		ACTIONS.searchJobs(searchObj)
 		
@@ -68,7 +66,7 @@ class HomeSearch extends React.Component {
 				<span id="tagline">find your side gig.</span>
 				<form onSubmit={this.submit}>
 					<input id="jobtitle" type="text" placeholder="job title" name="jobtitle" />
-					<input id="location" type="text" placeholder="city" name="location" />
+					<input id="city" type="text" placeholder="city" name="city" required />
 					<select name="worktype">
 						<option></option>
 						<option>part-time weekend</option>

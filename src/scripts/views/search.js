@@ -34,7 +34,7 @@ const SearchInput = React.createClass({
 
 	const searchObj = {
 		title: event.currentTarget.jobtitle.value
-		, location: event.currentTarget.location.value
+		, city: event.currentTarget.city.value
 		, worktype: event.currentTarget.worktype.value
 		, company: event.currentTarget.company.value
 		, hours: event.currentTarget.hours.value
@@ -61,7 +61,7 @@ const SearchInput = React.createClass({
 			<div className="search-criteria-form">
 					<form onSubmit={this.submit}>
 						<input id="jobtitle" type="text" placeholder="job title" name="jobtitle" />
-						<input id="location" type="text" placeholder="city" name="location" />
+						<input id="city" type="text" placeholder="city" name="city" required />
 						<select name="worktype">
 							<option></option>
 							<option>part-time weekend</option>
@@ -97,7 +97,6 @@ const SearchResults = React.createClass({
 		STORE.on('updateContent', ()=>{
 			this.setState(STORE.getData())
 		})
-		
 	}
 
 	, componentWillUnmount(){

@@ -2,17 +2,23 @@ import React from 'react'
 import Header from './header'
 import STORE from '../store'
 import ACTIONS from '../actions'
+import User from '../models/userModel'
+import { Button } from 'react-bootstrap'
 
 
 
-const JobView = React.createClass({
+class JobView extends React.Component {
 	
-	getInitialState(){
-		return STORE.getData()
+	constructor(props){
+		super(props)
+		this.state = STORE.getData()
 	}
 
-	, componentWillMount(){
-			console.log('this', this)
+	// getInitialState(){
+	// 	return STORE.getData()
+	// }
+
+	componentWillMount(){
 			ACTIONS.fetchJob({
 				url: `/api/job/${this.props.id}`
 			})
@@ -23,27 +29,66 @@ const JobView = React.createClass({
 			})
 	}
 
-	, componentWillUnmount(){
+	componentWillUnmount(){
 			STORE.off('updateContent')
 	}
 
-	, render(){
-		console.log('under render', this.state.jobModel)
+	render(){
+		console.log('log state', this.state.jobModel)
 			return (
 				<div>
 					<Header />
-					<JobInfo job={this.state.jobModel} />
+					{
+						this.state.jobModel.get('favorite') ? 
+						<JobInfo job={this.state.jobModel} /> : <div className="loading">loading</div>
+					}
 				</div>
 				)
 		}
-})
+
+}
 
 
-const JobInfo = React.createClass({
+// const JobInfo = React.createClass({
 
+class JobInfo extends React.Component {
 
+	constructor(props) {
+		super(props)
+		console.log('constructor', this.props)
+	}
+
+	// componentWillReceiveProps(nextProps){
+	// 	if(nextProps.job){
+	// 		this.render()
+	// 	}
+	// }
+
+	addToFavorites(){
+		// if(!this.props.job.get('favorite').includes(User.getCurrentUser().id)) {
+		console.log('add to faves', this.props.job)
+		ACTIONS.addToFavorites(this.props.job, User.getCurrentUser().id)
+		// } else {
+			// alert('already in your favorites!')
+		// }
+
+	}
 
 	render(){
+		console.log('render', this.props.job)
+		// console.log('user', User.getCurrentUser().id)
+		const jobFaves = this.props.job.get('favorite')
+		const userLoggedIn = User.getCurrentUser().id
+		// console.log(jobFaves, userLoggedIn)
+		const isItFavorited = jobFaves.includes(userLoggedIn)
+		console.log(isItFavorited)
+		// let disableButton
+		// if (jobFaves.includes(userLoggedIn)) {
+		// 	disableButton = <Button disabled>Favorited</Button>
+		// } else {
+		// 	disableButton = <Button onClick={this.addToFavorites}>Add to favorites</Button>
+		// }
+
 		return (
 			<div className="job-posting">
 				<div id="job-posting-basic-info">
@@ -54,10 +99,12 @@ const JobInfo = React.createClass({
 					<p>{this.props.job.get('worktype')}: generally {this.props.job.get('hours')}</p>
 					<p>{this.props.job.get('title')}</p>
 					<p>{this.props.job.get('description')}</p>
+					{isItFavorited ? <Button disabled>Favorited</Button> : <Button onClick={this.addToFavorites.bind(this)}>Add to favorites</Button>}
 				</div>
 			</div>
 			)
 	}
-})
+
+}
 
 export default JobView

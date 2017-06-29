@@ -8,6 +8,7 @@ const STORE = _.extend(Backbone.Events, {
 	data: {
 		jobCollection: new JobCollection()
 		, jobModel: new JobModel()
+		, jobinfo: {}
 	}
 
 	, getData: function(){
