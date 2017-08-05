@@ -29,6 +29,7 @@ class PostJob extends React.Component {
 			, state: event.currentTarget.state.value.toLowerCase()
 			, hours: event.currentTarget.hours.value.toLowerCase()
 			, worktype: event.currentTarget.worktype.value.toLowerCase()
+			, expires: event.currentTarget.date.value
 			
 		})
 	}
@@ -57,6 +58,7 @@ class PostJob extends React.Component {
 						<option>20+ hours/week</option>
 					</select>
 					<textarea type="text" name="description" placeholder="description"></textarea>
+					Expiration Date<input type="date" name="date" />
 					<button type="submit">submit</button>
 				</form>
 			</div>

@@ -18,9 +18,6 @@ const ViewJobs = React.createClass({
 	}
 
 	, componentDidMount(){
-		Backbone.Events.on('jobCriteria', ()=>{
-			console.log('payload')
-		})
 	}
 
 	, componentWillUnmount(){
