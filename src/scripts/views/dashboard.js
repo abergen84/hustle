@@ -78,6 +78,9 @@ class FavoriteJob extends React.Component {
 			<div onClick={this.gotoJob.bind(this)} >
 				<h3>{this.props.job.get('title')}</h3>
 				<p>{this.props.job.get('city')}, {this.props.job.get('state')}</p>
+					{
+						this.props.job.get('expires') ? <p>Expires on {this.props.job.get('expires')}</p> : <p>Expiration Date N/A</p>
+					}
 			</div>
 			)
 	}

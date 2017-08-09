@@ -62,13 +62,13 @@ const SearchInput = React.createClass({
 					<form onSubmit={this.submit}>
 						<input id="jobtitle" type="text" placeholder="job title" name="jobtitle" />
 						<input id="city" type="text" placeholder="city" name="city" required />
+						<input id="company" type="text" placeholder="company" name="company" />
 						<select name="worktype">
 							<option></option>
 							<option>part-time weekend</option>
 							<option>part-time weekday daytime</option>
 							<option>part-time weekday evenings</option>
 						</select>
-						<input id="company" type="text" placeholder="company" name="company" />
 						<select name="hours">
 							<option></option>
 							<option>1 - 5 hours/week</option>

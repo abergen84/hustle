@@ -63,24 +63,29 @@ const ACTIONS = {
 		console.log('entire searchObj', searchObj)
 			
 			const jobColl = STORE.data.jobCollection
-			
-			jobColl.reset(jobColl.filter((job) => {
-				for(var prop in searchObj) {
-					console.log('prop', prop)
-					console.log('jobprop', job.get(prop))
-					console.log('searchobjprop', searchObj[prop])
-					if(job.get(prop) === searchObj[prop] || job.get(prop) === '') {
-						return true
-					} else {
-						return false
-					}
-				}
-			}))
-				// job.get("title") === searchObj.title.toLowerCase() ||
-				// job.get("city") === searchObj.city.toLowerCase() ||
-				// job.get("worktype") === searchObj.worktype.toLowerCase() ||
-				// job.get("hours") === searchObj.hours.toLowerCase() ||
-				// job.get("company") === searchObj.company.toLowerCase()
+
+			// const filteredColl = jobColl.filter((job) => {
+			// 	for(var prop in searchObj) {
+			// 		console.log('prop', prop)
+			// 		console.log('jobprop', job.get(prop))
+			// 		console.log('searchobjprop', searchObj[prop])
+			// 		if(job.get(prop) === searchObj[prop] || job.get(prop) === '') {
+			// 			return true
+			// 		} else {
+			// 			return false
+			// 		}
+			// 	}
+			// })
+
+			const filteredColl = jobColl.filter((job) => {
+				return job.get("title").includes(searchObj.title.toLowerCase()) &&
+				job.get("city").includes(searchObj.city.toLowerCase()) &&
+				job.get("company").includes(searchObj.company.toLowerCase()) &&
+				job.get("worktype").includes(searchObj.worktype.toLowerCase()) && 
+				job.get("hours").includes(searchObj.hours.toLowerCase())
+			})
+
+			jobColl.reset(filteredColl)
 
 			STORE.data.jobinfo = searchObj
 
