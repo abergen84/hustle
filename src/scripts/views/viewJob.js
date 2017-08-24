@@ -14,10 +14,6 @@ class JobView extends React.Component {
 		this.state = STORE.getData()
 	}
 
-	// getInitialState(){
-	// 	return STORE.getData()
-	// }
-
 	componentWillMount(){
 			ACTIONS.fetchJob({
 				url: `/api/job/${this.props.id}`
@@ -48,9 +44,6 @@ class JobView extends React.Component {
 
 }
 
-
-// const JobInfo = React.createClass({
-
 class JobInfo extends React.Component {
 
 	constructor(props) {
@@ -58,20 +51,8 @@ class JobInfo extends React.Component {
 		console.log('constructor', this.props)
 	}
 
-	// componentWillReceiveProps(nextProps){
-	// 	if(nextProps.job){
-	// 		this.render()
-	// 	}
-	// }
-
 	addToFavorites(){
-		// if(!this.props.job.get('favorite').includes(User.getCurrentUser().id)) {
-		console.log('add to faves', this.props.job)
 		ACTIONS.addToFavorites(this.props.job, User.getCurrentUser().id)
-		// } else {
-			// alert('already in your favorites!')
-		// }
-
 	}
 
 	render(){
@@ -79,27 +60,40 @@ class JobInfo extends React.Component {
 		// console.log('user', User.getCurrentUser().id)
 		const jobFaves = this.props.job.get('favorite')
 		const userLoggedIn = User.getCurrentUser().id
-		// console.log(jobFaves, userLoggedIn)
 		const isItFavorited = jobFaves.includes(userLoggedIn)
-		console.log(isItFavorited)
-		// let disableButton
-		// if (jobFaves.includes(userLoggedIn)) {
-		// 	disableButton = <Button disabled>Favorited</Button>
-		// } else {
-		// 	disableButton = <Button onClick={this.addToFavorites}>Add to favorites</Button>
-		// }
+		
+		var applyButton
+		var faveButton
+		
+		// logic for showing apply button - if not logged in, disable
+		if(User.getCurrentUser().id) {
+			applyButton = <Button>Apply!</Button>
+		} else {
+			applyButton = <Button disabled>Apply!</Button>
+		}
+		// logic for showing favorited button - if not logged in, disabled. if logged in and already favorited, disabled
+		if(!User.getCurrentUser().id) {
+			faveButton = <Button disabled>Add to favorites</Button>
+		}
+		else if(User.getCurrentUser().id && isItFavorited) {
+			faveButton = <Button disabled>Favorited</Button>
+		}
+		else if(User.getCurrentUser().id && !isItFavorited) {
+			faveButton = <Button onClick={this.addToFavorites.bind(this)}>Add to favorites</Button>
+		}
 
 		return (
 			<div className="job-posting">
 				<div id="job-posting-basic-info">
 					<h2>{this.props.job.get('company')}</h2>
+					<h4>{this.props.job.get('title')}</h4>
 					<p>{this.props.job.get('city')}, {this.props.job.get('state')}</p>
 				</div>
 				<div id="job-posting-detailed-info">
 					<p>{this.props.job.get('worktype')}: generally {this.props.job.get('hours')}</p>
-					<p>{this.props.job.get('title')}</p>
 					<p>{this.props.job.get('description')}</p>
-					{isItFavorited ? <Button disabled>Favorited</Button> : <Button onClick={this.addToFavorites.bind(this)}>Add to favorites</Button>}
+					{applyButton}
+					{faveButton}
 				</div>
 			</div>
 			)

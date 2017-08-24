@@ -19,7 +19,9 @@ class RegisterCreds extends React.Component {
 	register(event){
 		event.preventDefault()
 		ACTIONS.registerUser({
-			email: event.currentTarget.username.value
+			firstname: event.currentTarget.firstname.value
+			, lastname: event.currentTarget.lastname.value
+			, email: event.currentTarget.username.value
 			, password: event.currentTarget.password.value
 		})
 	}	
@@ -28,6 +30,8 @@ class RegisterCreds extends React.Component {
 		return (
 			<div className="register">
 				<form onSubmit={this.register}>
+					<input type="text" name="firstname" placeholder="first name" />
+					<input type="text" name="lastname" placeholder="last name" />
 					<input type="email" name="username" placeholder="email" />
 					<input type="password" name="password" placeholder="password" />
 					<button type="submit">Register</button>

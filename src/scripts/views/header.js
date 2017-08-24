@@ -39,7 +39,7 @@ class Header extends React.Component {
 					display: 'inline-block'
 			}
 		}
-		const name = `welcome back, ${User.getCurrentUser().attributes.email}`
+		const name = `Welcome back, ${User.getCurrentUser().attributes.firstname}!`
 		return (
 			<nav className="top-header">
 				<a href="#home"><span id="header-title">hustlegigs</span></a>

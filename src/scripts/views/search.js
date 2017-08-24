@@ -3,9 +3,10 @@ import Header from './header'
 import { Button } from 'react-bootstrap'
 import STORE from '../store'
 import ACTIONS from '../actions'
+import {Grid,Row,Col,FieldGroup} from 'react-bootstrap'
 
 
-const SearchView = React.createClass({
+class SearchView extends React.Component {
 
 	render(){
 		return (
@@ -15,17 +16,25 @@ const SearchView = React.createClass({
 			</div>
 			)
 	}
-})
+}
 
-const SearchInput = React.createClass({
+class SearchInput extends React.Component {
 
-	getInitialState(){
-		return {
+	constructor(props){
+		super(props)
+		this.state = {
 			showjobs: false
 		}
+		this.submit = this.submit.bind(this)
 	}
 
-	, submit(event){
+	// getInitialState(){
+	// 	return {
+	// 		showjobs: false
+	// 	}
+	// }
+
+	submit(event){
 		event.preventDefault()
 		
 		this.setState({
@@ -33,10 +42,10 @@ const SearchInput = React.createClass({
 		})
 
 	const searchObj = {
-		title: event.currentTarget.jobtitle.value
-		, city: event.currentTarget.city.value
-		, worktype: event.currentTarget.worktype.value
-		, company: event.currentTarget.company.value
+		title: event.currentTarget.jobtitle.value.toLowerCase()
+		, city: event.currentTarget.city.value.toLowerCase()
+		, worktype: event.currentTarget.worktype.value.toLowerCase()
+		, company: event.currentTarget.company.value.toLowerCase()
 		, hours: event.currentTarget.hours.value
 	}
 
@@ -44,7 +53,7 @@ const SearchInput = React.createClass({
 
 	}
 
-	, render(){
+	render(){
 		
 		var show
 		if(this.state.showjobs == true){
@@ -58,32 +67,38 @@ const SearchInput = React.createClass({
 		}
 
 		return (
-			<div className="search-criteria-form">
-					<form onSubmit={this.submit}>
-						<input id="jobtitle" type="text" placeholder="job title" name="jobtitle" />
-						<input id="city" type="text" placeholder="city" name="city" required />
-						<input id="company" type="text" placeholder="company" name="company" />
-						<select name="worktype">
-							<option></option>
-							<option>part-time weekend</option>
-							<option>part-time weekday daytime</option>
-							<option>part-time weekday evenings</option>
-						</select>
-						<select name="hours">
-							<option></option>
-							<option>1 - 5 hours/week</option>
-							<option>6 - 10 hours/week</option>
-							<option>11 - 15 hours/week</option>
-							<option>16 - 20 hours/week</option>
-							<option>20+ hours/week</option>
-						</select>
-						<Button bsStyle="default" bsSize="large" type="submit">submit</Button>
-					</form>
+			<Row>
+			<div className="search-page">
+				<h1>Now we're cookin'</h1>
+					<div className="search-criteria-form">
+						<form onSubmit={this.submit}>
+							<input id="jobtitle" type="text" placeholder="Job Title" name="jobtitle" />
+							<input id="city" type="text" placeholder="City" name="city" required />
+							<input id="company" type="text" placeholder="Company" name="company" />
+							<select name="worktype">
+								<option></option>
+								<option>Part-time weekend</option>
+								<option>Part-time weekday daytime</option>
+								<option>Part-time weekday evenings</option>
+							</select>
+							<select name="hours">
+								<option></option>
+								<option default>1 - 5 hours/week</option>
+								<option>6 - 10 hours/week</option>
+								<option>11 - 15 hours/week</option>
+								<option>16 - 20 hours/week</option>
+								<option>20+ hours/week</option>
+							</select>
+							<Button bsStyle="default" bsSize="large" type="submit">submit</Button>
+						</form>
+						</div>
+					</div>
 					<div style={show}><SearchResults /></div>
-				</div>
+				</Row>
 			)
 	}
-})
+
+}
 
 const SearchResults = React.createClass({
 
@@ -107,9 +122,16 @@ const SearchResults = React.createClass({
 		console.log('log', this.state.jobCollection)
 		return (
 			<div>
-				{this.state.jobCollection.map((job)=>{
-					return <Job job={job} key={job.cid} />
-				})}
+				<h4 className="number-results">Found {this.state.jobCollection.length} jobs based on your search.</h4>
+				<Grid>
+					<Row>
+						<div>
+							{this.state.jobCollection.map((job)=>{
+								return <Job job={job} key={job.cid} />
+							})}
+						</div>
+					</Row>
+				</Grid>
 			</div>
 			)
 	}
@@ -123,10 +145,17 @@ const Job = React.createClass({
 
 	, render(){
 		return (
-			<div>
-				<h1><a onClick={this.goToJob}>{this.props.job.get('title')}</a></h1>
-				<p>{this.props.job.get('description')}</p>
-			</div>
+			<Col lg={6} sm={6} xs={12}>
+				<div className="job-listing-search">
+					<h3>{this.props.job.get('title')}</h3>
+					<p>{this.props.job.get('city')},{this.props.job.get('state')}</p>
+					<p>{this.props.job.get('hours')}</p>
+					<p>{this.props.job.get('worktype')}</p>
+					<p>{this.props.job.get('description')}</p>
+					<Button bsStyle="default" bsSize="sm" onClick={this.goToJob}>More info</Button>
+				</div>
+			</Col>
+
 			)
 	}
 })

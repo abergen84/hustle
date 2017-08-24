@@ -42,7 +42,7 @@ class Dashboard extends React.Component {
 
 class MainDash extends React.Component {
 	render(){
-		const name = User.getCurrentUser().attributes.email
+		const name = User.getCurrentUser().attributes.firstname
 		return (
 			<div>
 				<p>Welcome back, {name}</p>

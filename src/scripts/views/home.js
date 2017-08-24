@@ -6,7 +6,6 @@ import STORE from '../store'
 import ACTIONS from '../actions'
 import { Grid, Row, Col, Button } from 'react-bootstrap'
 import FontAwesome from 'react-fontawesome'
-//import PubSub from 'pubsub-js'
 
 class Home extends React.Component {
 	
@@ -14,7 +13,6 @@ class Home extends React.Component {
 		super()
 		ACTIONS.fetchJobs()
 		this.state = STORE.getData()
-		//console.log('constructor', this.state)
 	}
 
 	componentWillMount(){
