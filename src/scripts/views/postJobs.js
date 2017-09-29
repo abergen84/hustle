@@ -2,6 +2,8 @@ import React from 'react'
 import Backbone from 'Backbone'
 import Header from './header'
 import ACTIONS from '../actions'
+import { Grid, Row, Col, Button } from 'react-bootstrap'
+
 
 class PostJobView extends React.Component {
 	render(){
@@ -30,37 +32,49 @@ class PostJob extends React.Component {
 			, hours: event.currentTarget.hours.value.toLowerCase()
 			, worktype: event.currentTarget.worktype.value.toLowerCase()
 			, expires: event.currentTarget.date.value
-			
 		})
 	}
 
 	render(){
 		return (
-			<div className="post-job-form">
-				<form onSubmit={this.saveJob} >
-					<input type="text" name="company" placeholder="company" />
-					<input type="email" name="email" placeholder="enter email" />
-					<input type="text" name="title" placeholder="enter job title" />
-					<div id="post-job-location">
-						<input type="text" name="city" placeholder="city" />
-						<input type="text" name="state" placeholder="state" />
+			<div className="postJobPage">
+				<div className="post-jobs-header">
+					<h5>Post a job</h5>
+				</div>
+				<div className="post-jobs-body">
+				<Grid fluid>
+				<Row>
+				<Col md={6} sm={8} xs={10} mdOffset={4} smOffset={2}>
+					<div className="post-job-form">
+						<form onSubmit={this.saveJob} >
+							<input type="text" name="company" placeholder="company" />
+							<input type="email" name="email" placeholder="enter email" />
+							<input type="text" name="title" placeholder="enter job title" />
+							<div id="post-job-location">
+								<input type="text" name="city" placeholder="city" />
+								<input type="text" name="state" placeholder="state" />
+							</div>
+							<select name="worktype">
+								<option>part-time weekend</option>
+								<option>part-time weekday daytime</option>
+								<option>part-time weekday evenings</option>
+							</select>
+							<select name="hours">
+								<option>1 - 5 hours/week</option>
+								<option>6 - 10 hours/week</option>
+								<option>11 - 15 hours/week</option>
+								<option>16 - 20 hours/week</option>
+								<option>20+ hours/week</option>
+							</select>
+							<textarea type="text" name="description" placeholder="description"></textarea>
+							Expiration Date<input type="date" name="date" />
+							<button type="submit">submit</button>
+						</form>
 					</div>
-					<select name="worktype">
-						<option>part-time weekend</option>
-						<option>part-time weekday daytime</option>
-						<option>part-time weekday evenings</option>
-					</select>
-					<select name="hours">
-						<option>1 - 5 hours/week</option>
-						<option>6 - 10 hours/week</option>
-						<option>11 - 15 hours/week</option>
-						<option>16 - 20 hours/week</option>
-						<option>20+ hours/week</option>
-					</select>
-					<textarea type="text" name="description" placeholder="description"></textarea>
-					Expiration Date<input type="date" name="date" />
-					<button type="submit">submit</button>
-				</form>
+					</Col>
+					</Row>
+					</Grid>
+				</div>
 			</div>
 			)
 	}

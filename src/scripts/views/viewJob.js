@@ -3,7 +3,8 @@ import Header from './header'
 import STORE from '../store'
 import ACTIONS from '../actions'
 import User from '../models/userModel'
-import { Button } from 'react-bootstrap'
+import { Grid, Row, Col, Button } from 'react-bootstrap'
+import moment from 'moment'
 
 
 
@@ -83,18 +84,40 @@ class JobInfo extends React.Component {
 		}
 
 		return (
-			<div className="job-posting">
-				<div id="job-posting-basic-info">
-					<h2>{this.props.job.get('company')}</h2>
-					<h4>{this.props.job.get('title')}</h4>
-					<p>{this.props.job.get('city')}, {this.props.job.get('state')}</p>
-				</div>
-				<div id="job-posting-detailed-info">
-					<p>{this.props.job.get('worktype')}: generally {this.props.job.get('hours')}</p>
-					<p>{this.props.job.get('description')}</p>
-					{applyButton}
-					{faveButton}
-				</div>
+			<div className="job-posting-body">
+				<Grid fluid>
+					<Row>
+						<Col md={3} sm={2} >
+							<div className="job-posting-column">
+								<h3>Job Summary</h3>
+								{applyButton}
+								{faveButton}
+								<h5>Company</h5>
+								<p>{this.props.job.get('company')}</p>
+								<h5>Location</h5>
+								<p>{this.props.job.get('city')}</p>
+								<h5>Job Type</h5>
+								<p>{this.props.job.get('worktype')}</p>
+								<h5>Hours per week</h5>
+								<p>{this.props.job.get('hours')}</p>
+								<h5>Posted</h5>
+								<p>{moment(this.props.job.get('created')).format('MM/DD/YYYY')}</p>
+							</div>
+						</Col>
+						<Col md={8} sm={9} >
+							<div className="job-posting">
+								<div id="job-posting-basic-info">
+									<h2>{this.props.job.get('title')} at {this.props.job.get('company')}</h2>
+									<p>{this.props.job.get('city')}, {this.props.job.get('state')}</p>
+								</div>
+								<div id="job-posting-detailed-info">
+									<p>{this.props.job.get('worktype')}: generally {this.props.job.get('hours')}</p>
+									<p>{this.props.job.get('description')}</p>	
+								</div>
+							</div>
+						</Col>
+					</Row>
+				</Grid>
 			</div>
 			)
 	}

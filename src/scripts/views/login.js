@@ -1,6 +1,7 @@
 import React from 'react'
 import ACTIONS from '../actions'
 import Header from './header'
+import { Form, Col, FormControl, FormGroup } from 'react-bootstrap'
 
 
 class Login extends React.Component {
@@ -24,11 +25,31 @@ class LoginCreds extends React.Component {
 	render(){
 		return (
 			<div className="login">
-				<form onSubmit={this.login} >
-					<input type="email" name="email" placeholder="email" />
-					<input type="password" name="password" placeholder="password" />
-					<button type="submit">Login</button>
-				</form>
+				<div className="login-form">
+				<h3>Login</h3>
+					<Form horizontal onSubmit={this.login} >
+					 <FormGroup controlId="formHorizontalEmail">
+							<Col md={2}>Email</Col>
+							<Col md={8}>
+								<FormControl type="email" name="email" placeholder="Email"/>
+							</Col>
+						</FormGroup>
+
+						<FormGroup controlId="formHorizontalPassword">
+							<Col md={2}>Password</Col>
+							<Col md={8}>
+								<FormControl type="password" name="password" placeholder="Password"/>
+							</Col>
+						</FormGroup>
+
+						<FormGroup>
+							<Col md={6}>
+								<button type="submit">Login</button>
+							</Col>
+						</FormGroup>
+
+					</Form>
+				</div>
 			</div>
 			)
 	}

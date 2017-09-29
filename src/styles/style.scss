@@ -9,6 +9,7 @@
 body {
 	font-family: Helvetica, Arial, sans-serif;
 	margin: 0;
+	min-height: 100%;
 }
 
 //HEADER
@@ -184,7 +185,13 @@ body {
 	}
 
 	.job-profile {
-		border: 1px solid black;
+		border: 1px solid #000;
+		margin: 20px 10px 10px 10px;
+		padding: 10px;
+		background-color: #fff;
+		h3 {
+			margin: 0;
+		}
 	}
 	
 	.loading {
@@ -192,3 +199,125 @@ body {
 		height: 100px;
 		background-color: red;
 	}
+
+	//JOBS LISTINGS PAGE
+	.viewJobs {
+		.jobSearchResults {
+			.search-results-header {
+				/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+35,000000+100&1+35,0+100 */
+				background: -moz-linear-gradient(left, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%), url('../images/nyc2.jpg') center no-repeat;; /* FF3.6-15 */
+				background: -webkit-linear-gradient(left, rgba(255,255,255,1) 30%,rgba(255,255,255,0) 100%), url('../images/nyc2.jpg') center no-repeat;; /* Chrome10-25,Safari5.1-6 */
+				background: linear-gradient(to right, rgba(255,255,255,1) 30%,rgba(255,255,255,0) 100%), url('../images/nyc2.jpg') center no-repeat; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
+				height: 300px;
+				background-size: cover;
+				padding-bottom: 3%;
+				h5 {
+					font-size: 20px;
+    			padding-left: 30px;
+    			top: 50%;
+    			position: relative;
+				}
+			}
+			.search-results-body {
+				background: #EEE;
+				.results-column {
+					border: 1px solid #000;
+					margin-top: 20px;
+					padding: 10px;
+					background-color: #fff;
+					min-height: 295px;
+				}
+			}
+		}
+	}
+
+	.job-posting-body {
+		background: #EEE;
+		padding: 10px;
+		height: 100vh;
+		h3, h2 {
+			margin-top: 0;
+		}
+	}
+	.job-posting-column {
+		background: #FFF;
+		border: 1px solid #000;
+		margin-top: 20px;
+		padding: 20px;
+	}
+	.job-posting {
+		background: #FFF;
+		border: 1px solid #000;
+		margin-top: 20px;
+		padding: 20px;
+	}
+
+.postJobPage {
+	.post-jobs-header {
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+35,000000+100&1+35,0+100 */
+		background: -moz-linear-gradient(left, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%), url('../images/nyc2.jpg') center no-repeat;; /* FF3.6-15 */
+		background: -webkit-linear-gradient(left, rgba(255,255,255,1) 30%,rgba(255,255,255,0) 100%), url('../images/nyc2.jpg') center no-repeat;; /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, rgba(255,255,255,1) 30%,rgba(255,255,255,0) 100%), url('../images/nyc2.jpg') center no-repeat; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
+		height: 300px;
+		background-size: cover;
+		padding-bottom: 3%;
+		h5 {
+			font-size: 20px;
+    	padding-left: 30px;
+    	top: 50%;
+    	position: relative;
+		}
+	}
+}
+
+.login {
+	background: linear-gradient(
+      rgba(0, 0, 0, 0.3), 
+      rgba(0, 0, 0, 0.3)
+    ), url('../images/nyc2.jpg') center no-repeat;
+		background-size: cover;
+		height: 100vh;
+		.login-form {
+			background: #FFF;
+	    width: 35%;
+	    padding: 40px 20px;
+	    text-align: center;
+	    margin: 0 auto;
+	    vertical-align: middle;
+	    position: relative;
+	    top: 50%;
+	    transform: translateY(-50%);
+	    border: 1px solid #000;
+		}
+		h3 {
+			padding-bottom: 10px;
+		}
+}
+
+.register {
+	background: linear-gradient(
+      rgba(0, 0, 0, 0.3), 
+      rgba(0, 0, 0, 0.3)
+    ), url('../images/nyc2.jpg') center no-repeat;
+		background-size: cover;
+		height: 100vh;
+		.register-form {
+			background: #FFF;
+	    width: 50%;
+	    padding: 40px 20px;
+	    text-align: center;
+	    margin: 0 auto;
+	    vertical-align: middle;
+	    position: relative;
+	    top: 50%;
+	    transform: translateY(-50%);
+	    border: 1px solid #000;
+		}
+		h3 {
+			padding-bottom: 10px;
+		}
+}
+
+

@@ -33,35 +33,35 @@ const app = function() {
 		}
 
 		, home(){
-				ReactDOM.render(<Home />, document.querySelector('.container-fluid'))
+				ReactDOM.render(<Home />, document.querySelector('.app'))
 		}
 
 		, viewJobs(){
-				ReactDOM.render(<JobsView />, document.querySelector('.container-fluid'))
+				ReactDOM.render(<JobsView />, document.querySelector('.app'))
 		}
 
 		, viewJob(id){
-				ReactDOM.render(<JobView id={id} />, document.querySelector('.container-fluid'))
+				ReactDOM.render(<JobView id={id} />, document.querySelector('.app'))
 		}
 
 		, postJob(){
-				ReactDOM.render(<PostJobView />, document.querySelector('.container-fluid'))
+				ReactDOM.render(<PostJobView />, document.querySelector('.app'))
 		}
 
 		, dashboard(){
-				ReactDOM.render(<Dashboard />, document.querySelector('.container-fluid'))
+				ReactDOM.render(<Dashboard />, document.querySelector('.app'))
 		}
 
 		, viewSearch(){
-				ReactDOM.render(<SearchView />, document.querySelector('.container-fluid'))
+				ReactDOM.render(<SearchView />, document.querySelector('.app'))
 		}
 
 		, login(){
-				ReactDOM.render(<Login />, document.querySelector('.container-fluid'))
+				ReactDOM.render(<Login />, document.querySelector('.app'))
 		}
 
 		, register(){
-				ReactDOM.render(<Register />, document.querySelector('.container-fluid'))
+				ReactDOM.render(<Register />, document.querySelector('.app'))
 		}
 
 		, initialize(){
