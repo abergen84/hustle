@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Backbone from 'backbone'
 import Header from './header'
+import Footer from './footer'
 import STORE from '../store'
 import ACTIONS from '../actions'
 import { Grid, Row, Col, Button } from 'react-bootstrap'
@@ -35,6 +36,7 @@ class Home extends React.Component {
 					</div>
 				</Row>
 				<Intro />
+				<Footer />
 			</div>
 			)
 	}
@@ -82,21 +84,63 @@ class HomeSearch extends React.Component {
 const Intro = React.createClass({
 	render(){
 		return (
-			<div className="intro">
-				<Grid>
-					<Row>
-						<Col lg={4} sm={12}>
-							<FontAwesome className="icon" name="rocket" size="5x" />
-						</Col>
-						<Col lg={8} sm={12}>
-							<h1>Search. Apply. Money.</h1>
-							<p>It's as simple as finding something you enjoy doing in your spare time, and cashing in. 
-							Instead of trying to waste time selling your service or product, let someone else established 
-							take on that task while you worry about working. No catches, just extra income when you realize your time is valuable and 
-							you'd rather spend it wisely.</p>
-						</Col>
-					</Row>
-				</Grid>
+			<div>
+				<div className="intro">
+					<Grid>
+						<Row>
+							<Col lg={4} sm={12}>
+								<div className="icon-circle">
+									<FontAwesome className="icon intro-paper" name="file-text-o" size="5x" />
+								</div>
+							</Col>
+							<Col lg={8} sm={12}>
+								<h1>Search. Apply. Make money.</h1>
+								<p>It's as simple as finding something you enjoy doing in your spare time, and cashing in. 
+								Instead of trying to waste time selling your service or product, let someone else established 
+								take on that task while you worry about working. No catches, just extra income when you realize your time is valuable and 
+								you'd rather spend it wisely.</p>
+							</Col>
+						</Row>
+					</Grid>
+				</div>
+				<div className="steps">
+					<Grid>
+						<Row>
+							<Col lg={4} sm={12}>
+								<div className="card">
+									<FontAwesome className="icon" name="list" size="5x" />
+									<h4>Your source of side jobs.</h4>
+									<p>
+										Hustlegigs is your biggest and best source of creative side jobs in the world. Most job boards cater to full-time
+										positions, with side jobs as a distant second. Therefore, no source exists until today for a one-stop shop for 
+										finding side jobs that will make you money. 
+									</p>
+								</div>
+							</Col>
+							<Col lg={4} sm={12}>
+								<div className="card">
+									<FontAwesome className="icon" name="search-plus" size="5x" />
+									<h4>Search for what you want.</h4>
+									<p>
+										Easy search and options allow you to narrow down what you're looking for. Stop spending time searching
+										in person for what you want by calling random businesses and wasting time. 
+									</p>
+								</div>
+							</Col>
+							<Col lg={4} sm={12}>
+								<div className="card">
+									<FontAwesome className="icon" name="handshake-o" size="5x" />
+									<h4>Get paid doing what you love.</h4>
+									<p>
+										Make money digging into your hobbies or interests instead of spending your free time doing it at no cost. Why not sharpen your skills
+										while helping someone else? Feel good about providing for another small business while honing in your creative desires. And getting paid, of
+										course.
+									</p>
+								</div>
+							</Col>
+						</Row>
+					</Grid>
+				</div>
 			</div>
 			)
 	}

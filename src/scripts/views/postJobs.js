@@ -2,6 +2,7 @@ import React from 'react'
 import Backbone from 'Backbone'
 import Header from './header'
 import ACTIONS from '../actions'
+import User from '../models/userModel'
 import { Grid, Row, Col, Button } from 'react-bootstrap'
 
 
@@ -32,6 +33,7 @@ class PostJob extends React.Component {
 			, hours: event.currentTarget.hours.value.toLowerCase()
 			, worktype: event.currentTarget.worktype.value.toLowerCase()
 			, expires: event.currentTarget.date.value
+			, createdby: User.getCurrentUser().id
 		})
 	}
 

@@ -41,7 +41,16 @@ body {
 		}
 		#logout-button {
 			float: right;
+			margin-top: 10px;
 		}
+}
+
+//FOOTER
+
+footer {
+	padding: 10px 50px;
+	font-weight: 700;
+	background: #FFF;
 }
 
 //HOME PAGE
@@ -96,19 +105,65 @@ body {
 	}
 
 	.intro {
+		padding: 5% 0;
 		h1 {
 			font-family: "Oswald";
 			font-size: 52px;
+			margin-bottom: 20px;
 		}
 		p {
 			font-size: 20px;
+			padding-right: 15%;
 		}
 		.icon {
-			margin-top: 20px;
-    	text-align: center;
-    	display: block;
+			// margin-top: 20px;
+    	// text-align: center;
+    	// display: block;
+		}
+		.icon-circle {
+			border: 4px solid #000;
+	    border-radius: 50%;
+	    width: 150px;
+	    padding: 50px;
+	    height: 150px;
+	    position: relative;
+	    margin-top: 10%;
+		}
+
+		.intro-paper {
+			position: absolute;
+			top: 28%;
+			left: 32%;
 		}
 	}
+
+	.steps {
+		background: #EEE;
+		padding: 30px 0;
+		.card {
+			background: #FFF;
+			height: 400px;
+			margin: 20px;
+			padding: 20px;
+			text-align: center;
+			box-shadow: 5px 5px 5px #888888;
+			.icon {
+				font-size: 5em;
+		    margin: 0 auto;
+		    width: 60px;
+		    display: block;
+			}
+			h4 {
+				margin-top: 30px;
+			}
+			p {
+				text-align: left;
+				padding: 0 15px;
+			}
+		}
+	}
+
+
 
 	// POST JOB PAGE
 
@@ -318,6 +373,53 @@ body {
 		h3 {
 			padding-bottom: 10px;
 		}
+}
+
+.dashboardPage {
+	background: #EEE;
+}
+
+.dashboard-header {
+	background: linear-gradient(
+      rgba(0, 0, 0, 0.3), 
+      rgba(0, 0, 0, 0.3)
+    ), url('../images/nyc2.jpg') center no-repeat;
+		background-size: cover;
+		height: 500px;
+		h3 {
+			color: #FFF;
+			text-align: center;
+			padding-top: 15%;
+			margin-top: 0;
+		}
+		p {
+			color: #FFF;
+			font-size: 20px;
+			text-align: center;
+		}
+}
+
+.dashboard-job {
+	border: 1px solid #000;
+	padding: 10px;
+	background-color: #FFF;
+	width: 50%;
+	margin: 20px auto;
+	cursor: pointer;
+}
+
+.favorites {
+	h3 {
+		text-align: center;
+		margin-top: 40px;
+	}
+}
+
+.posted {
+	h3 {
+		text-align: center;
+		margin-top: 40px;
+	}
 }
 
 

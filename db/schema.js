@@ -32,6 +32,7 @@ const jobSchema = new mongoose.Schema({
 	, created: { type: Date, default: Date.now }
   , expires: { type: Date, required: true }
   , favorite: {type: [String], default: [] }
+  , createdby: {type: String, required: true }
 })
 
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from './header'
+import Footer from './footer'
 import User from '../models/userModel'
 import STORE from '../store'
 import ACTIONS from '../actions'
@@ -30,11 +31,12 @@ class Dashboard extends React.Component {
 	render(){
 		console.log('state under render', this.state)
 		return (
-			<div>
+			<div className="dashboardPage">
 				<Header />
 				<MainDash />
 				{this.state.jobCollection ? 
 				<FavoriteJobs jobs={this.state.jobCollection} /> : <h2>LOADING</h2> }
+				<Footer />
 			</div>
 			)
 	}
@@ -44,8 +46,8 @@ class MainDash extends React.Component {
 	render(){
 		const name = User.getCurrentUser().attributes.firstname
 		return (
-			<div>
-				<p>Welcome back, {name}</p>
+			<div className="dashboard-header">
+				<h3>Welcome back, {name}. </h3>
 				<p>See the jobs you've posted or saved below</p>
 			</div>
 			)
@@ -58,8 +60,15 @@ class FavoriteJobs extends React.Component {
 		if(this.props.jobs) {
 		return (
 			<div>
-			{this.props.jobs.models.map(
-					(job) => <FavoriteJob job={job} key={job.cid} />)}
+				<div className="favorites">
+				<h3>Favorited Jobs</h3>
+				{this.props.jobs.models.map(
+						(job) => <FavoriteJob job={job} key={job.cid} />)}
+				</div>
+				<div className="posted">
+					<h3>Posted Jobs</h3>
+				</div>
+
 			</div>
 			)
 		}
@@ -75,7 +84,7 @@ class FavoriteJob extends React.Component {
 
 	render(){
 		return (
-			<div onClick={this.gotoJob.bind(this)} >
+			<div className="dashboard-job" onClick={this.gotoJob.bind(this)} >
 				<h3>{this.props.job.get('title')}</h3>
 				<p>{this.props.job.get('city')}, {this.props.job.get('state')}</p>
 					{
