@@ -69,7 +69,7 @@ class SearchInput extends React.Component {
 		return (
 			<Row>
 			<div className="search-page">
-				<h1>Now we're cookin'</h1>
+				<h1>Now we're cookin'.</h1>
 					<div className="search-criteria-form">
 						<form onSubmit={this.submit}>
 							<input id="jobtitle" type="text" placeholder="Job Title" name="jobtitle" />
